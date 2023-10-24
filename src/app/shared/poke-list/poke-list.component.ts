@@ -8,7 +8,10 @@ import { PokeApiService } from 'src/app/service/poke-api.service';
 })
 export class PokeListComponent implements OnInit {
 
+  //logica de busca de pokemon
   public getAllPokemons:any;
+  private setAllPokemons:any;
+  // get e set
 
   //instanciar a pokeApi Service
   constructor(private pokeApiService:PokeApiService) { 
@@ -17,9 +20,19 @@ export class PokeListComponent implements OnInit {
   // A partir do service
   ngOnInit():void {
     this.pokeApiService.apiListAllPokemons.subscribe(
-      res=>{
-        this.getAllPokemons = res.results;
+      res=>{ //ambos vão receber os valores do array
+        this.setAllPokemons = res.results;
+        this.getAllPokemons = this.setAllPokemons;
         console.log(this.getAllPokemons);
     })
+  }
+
+  // getSearch ele recebe o value do output
+  public getSearch(value:string){
+    const filter = this.setAllPokemons.filter((res:any)=>{ // um vai setar o valor, ou vai segurar o valor
+            //res.nome(nome do pokemon). indexof(varificar se as primeiras letras do pokemon é igual o valor digitado)
+      return !res.name.indexOf(value.toLocaleLowerCase());
+    })
+  this.getAllPokemons=filter;
   }
 }
