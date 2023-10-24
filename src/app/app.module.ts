@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //module
 import { PagesModule } from './pages/pages.module';
+
+//requisição http para a classe Service
+import { HttpClientModule} from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 //componenet
 
 @NgModule({
@@ -14,7 +18,9 @@ import { PagesModule } from './pages/pages.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PagesModule
+    PagesModule,
+    HttpClientModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
